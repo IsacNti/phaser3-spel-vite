@@ -3,10 +3,14 @@ import Phaser from 'phaser'
 import ScoreLabel from './ScoreLabel'
 import BombSpawner from './BombSpawner'
 
+
+// tutorial
 const GROUND_KEY = 'ground'
+const GROUND_KEY1 = 'pellare'
 const DUDE_KEY = 'dude'
 const STAR_KEY = 'star'
 const BOMB_KEY = 'bomb'
+
 
 
 export default class GameScene extends Phaser.Scene
@@ -26,12 +30,17 @@ export default class GameScene extends Phaser.Scene
 
 	preload()
 	{
+		// skapar bilderna till ett mine så de går använda senare
+		
 		this.load.image('sky', 'src/assets/sky.png')
 		this.load.image(GROUND_KEY, 'src/assets/platform.png')
+		this.load.image(GROUND_KEY1,'src/assets/upp-ner.png')
         this.load.image(STAR_KEY, 'src/assets/star.png')
         this.load.image(BOMB_KEY, 'src/assets/bomb.png')
 		this.load.image('road','src/assets/road.png')
 		this.load.image('moon','src/assets/Moon.png')
+		this.load.image('label','src/assets/vitback.png')
+		this.load.image('hus','src/assets/houses3.png')
 
 		this.load.spritesheet(DUDE_KEY,  
 			'src/assets/dude.png',
@@ -41,13 +50,17 @@ export default class GameScene extends Phaser.Scene
 
 	create()
 	{
+		// skapar bilder så de kommer in i spelet
+		
 		this.add.image(960, 540, 'sky')
-    	const platforms = this.createPlatforms()
+		const platforms = this.createPlatforms()
+		this.add.image(960,580,'hus').setScale(1)
+		this.add.image(90,28,'label')
 		this.add.image(960,512,'road')
 		this.add.image(1500,100,'moon')
 		this.player = this.createPlayer()
         this.stars = this.createStars()
-
+		// gör så de finns score som syns
         this.scoreLabel = this.createScoreLabel(16, 16, 0)
 
         this.bombSpawner = new BombSpawner(this, BOMB_KEY)
@@ -67,20 +80,36 @@ export default class GameScene extends Phaser.Scene
 
     createPlatforms()
 	{
+		// skapar platfromarna som gubben inte kan gå igenom
 		const platforms = this.physics.add.staticGroup()
 
 		platforms.create(400, 568, GROUND_KEY).setScale(2).refreshBody()
 		platforms.create(400, 1058, GROUND_KEY).setScale(10).refreshBody()
-	
-		platforms.create(600, 400, GROUND_KEY)
-		platforms.create(50, 250, GROUND_KEY)
-		platforms.create(750, 220, GROUND_KEY)
+		// marken
+		platforms.create(660, 380, GROUND_KEY).setScale(0.4).refreshBody()
+		//första husets top
+		platforms.create(150, 236, GROUND_KEY1).setScale(0.6).refreshBody()
+		platforms.create(50, 120, GROUND_KEY).setScale(0.6).refreshBody()
+		platforms.create(40, 380, GROUND_KEY).setScale(0.6).refreshBody()
+
+		//andra husets top
+		platforms.create(1142, 340, GROUND_KEY).setScale(0.8).refreshBody()
+		platforms.create(810, 340, GROUND_KEY).setScale(0.8).refreshBody()
+		platforms.create(660, 380, GROUND_KEY).setScale(0.4).refreshBody()
+		platforms.create(596, 430, GROUND_KEY).setScale(0.4).refreshBody()
+		platforms.create(596, 430, GROUND_KEY).setScale(0.4).refreshBody()
+		platforms.create(530, 465, GROUND_KEY).setScale(0.4).refreshBody()
+		platforms.create(480, 500, GROUND_KEY).setScale(0.4).refreshBody().setAngle(-20)
+
+
+
 		
 
         return platforms
 	}
     createPlayer()
 	{
+		// skapar gubben
 		const player = this.physics.add.sprite(100, 450, DUDE_KEY)
 		player.setBounce(0.2)
 		player.setCollideWorldBounds(true)
