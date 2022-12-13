@@ -13,9 +13,13 @@ const BOMB_KEY = 'bomb'
 const WHEEL = 'wheel'
 const WHEEL1 = 'wheelsido'
 
-
-
-
+/*
+kom ihåg css för html
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    background-color: #333; 
+*/
 export default class GameScene extends Phaser.Scene
 {
 	constructor()
@@ -55,10 +59,9 @@ export default class GameScene extends Phaser.Scene
 	create()
 	{
 		// skapar bilder så de kommer in i spelet
-		
+		const platforms = this.createPlatforms()
 		this.add.image(960, 540, 'sky')
 		this.add.image(960,580,'hus').setScale(1)
-		const platforms = this.createPlatforms()
 		const whell = this.createWhell()
 		this.add.image(90,28,'label').setScale(2)
 		this.add.image(960,512,'road')

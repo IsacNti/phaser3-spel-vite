@@ -20,6 +20,7 @@ export default class BombSpawner
 
 	spawn(playerX = 0)
 	{
+		// hur långt ifrpn minst ska va från spelare och på vilka delar av kartan nu mllan 400 och 1600
 		const x = (playerX < 400) ? Phaser.Math.Between(400, 1600) : Phaser.Math.Between(0, 400)
 
         const bomb = this.group.create(x, 16, this.key)
