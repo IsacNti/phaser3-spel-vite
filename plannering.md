@@ -3,9 +3,11 @@
 # 47
 tutorial och börja programera ändra backgrunden
 
+https://phaser.io/tutorials/making-your-first-phaser-3-game/part1 
 # 48
 programera backgrunden lite mer tutorial
 
+https://app1.zenva.com/course/intro-to-phaser-3-game-development/
 # 49
 programera ändra bilder lägg till functioner på bilder så skappar en backgrund ska vara klar
 

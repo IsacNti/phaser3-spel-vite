@@ -10,6 +10,9 @@ const GROUND_KEY1 = 'pellare'
 const DUDE_KEY = 'dude'
 const STAR_KEY = 'star'
 const BOMB_KEY = 'bomb'
+const WHEEL = 'wheel'
+const WHEEL1 = 'wheelsido'
+
 
 
 
@@ -31,7 +34,8 @@ export default class GameScene extends Phaser.Scene
 	preload()
 	{
 		// skapar bilderna till ett mine så de går använda senare
-		
+		this.load.image(WHEEL,'src/assets/wheels.png')
+		this.load.image(WHEEL1,'src/assets/wheel1.png')
 		this.load.image('sky', 'src/assets/sky.png')
 		this.load.image(GROUND_KEY, 'src/assets/platform.png')
 		this.load.image(GROUND_KEY1,'src/assets/upp-ner.png')
@@ -53,9 +57,10 @@ export default class GameScene extends Phaser.Scene
 		// skapar bilder så de kommer in i spelet
 		
 		this.add.image(960, 540, 'sky')
-		const platforms = this.createPlatforms()
 		this.add.image(960,580,'hus').setScale(1)
-		this.add.image(90,28,'label')
+		const platforms = this.createPlatforms()
+		const whell = this.createWhell()
+		this.add.image(90,28,'label').setScale(2)
 		this.add.image(960,512,'road')
 		this.add.image(1500,100,'moon')
 		this.player = this.createPlayer()
@@ -70,6 +75,9 @@ export default class GameScene extends Phaser.Scene
         this.physics.add.collider(this.stars, platforms)
 		this.physics.add.collider(bombsGroup, platforms)
         this.physics.add.collider(this.player, bombsGroup, this.hitBomb, null, this)
+		this.physics.add.collider(this.player, whell)
+		this.physics.add.collider(this.stars, whell)
+		this.physics.add.collider(bombsGroup, whell)
 
         this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
         
@@ -83,30 +91,81 @@ export default class GameScene extends Phaser.Scene
 		// skapar platfromarna som gubben inte kan gå igenom
 		const platforms = this.physics.add.staticGroup()
 
-		platforms.create(400, 568, GROUND_KEY).setScale(2).refreshBody()
 		platforms.create(400, 1058, GROUND_KEY).setScale(10).refreshBody()
 		// marken
 		platforms.create(660, 380, GROUND_KEY).setScale(0.4).refreshBody()
 		//första husets top
-		platforms.create(150, 236, GROUND_KEY1).setScale(0.6).refreshBody()
+		platforms.create(150, 246, GROUND_KEY1).setScale(0.6).refreshBody()
 		platforms.create(50, 120, GROUND_KEY).setScale(0.6).refreshBody()
 		platforms.create(40, 380, GROUND_KEY).setScale(0.6).refreshBody()
 
+		//första huset bot
+		platforms.create(50, 540, GROUND_KEY).setScale(0.4).refreshBody()
+		platforms.create(146,770,GROUND_KEY1).setScale(0.9).refreshBody()
+		platforms.create(130,562,GROUND_KEY1).setScale(0.1).refreshBody()
+
+
 		//andra husets top
 		platforms.create(1142, 340, GROUND_KEY).setScale(0.8).refreshBody()
-		platforms.create(810, 340, GROUND_KEY).setScale(0.8).refreshBody()
+		platforms.create(830, 340, GROUND_KEY).setScale(0.8).refreshBody()
 		platforms.create(660, 380, GROUND_KEY).setScale(0.4).refreshBody()
 		platforms.create(596, 430, GROUND_KEY).setScale(0.4).refreshBody()
-		platforms.create(596, 430, GROUND_KEY).setScale(0.4).refreshBody()
 		platforms.create(530, 465, GROUND_KEY).setScale(0.4).refreshBody()
-		platforms.create(480, 500, GROUND_KEY).setScale(0.4).refreshBody().setAngle(-20)
+		platforms.create(480, 500, GROUND_KEY).setScale(0.4).refreshBody()
 
+		//andra huset  kroppen vänster del
+		platforms.create(460, 710, GROUND_KEY1).setScale(1).refreshBody()
+		platforms.create(460, 510, GROUND_KEY1).setScale(0.2).refreshBody()
+		platforms.create(524, 470, GROUND_KEY1).setScale(0.2).refreshBody()
+		platforms.create(584, 420, GROUND_KEY1).setScale(0.2).refreshBody()
+		platforms.create(676, 390, GROUND_KEY1).setScale(0.2).refreshBody()
 
+		// höger del
+		platforms.create(1030, 710, GROUND_KEY1).setScale(1).refreshBody()
+		platforms.create(1220, 810, GROUND_KEY1).setScale(0.4).refreshBody()
+		platforms.create(1220, 445, GROUND_KEY1).setScale(0.5).refreshBody()
+		platforms.create(1030, 730, GROUND_KEY).setScale(1).refreshBody()
+		platforms.create(1030, 560, GROUND_KEY).setScale(1).refreshBody()
+		platforms.create(1234, 810, GROUND_KEY).setScale(0.3).refreshBody()
+		platforms.create(1284, 870, GROUND_KEY1).setScale(0.3).refreshBody()
+		platforms.create(1220, 456, GROUND_KEY).setScale(0.3).refreshBody()
+		platforms.create(1240, 500, GROUND_KEY).setScale(0.3).refreshBody()
+		platforms.create(1274, 478, GROUND_KEY1).setScale(0.1).refreshBody()
 
-		
+		// tredje huset
+		platforms.create(1590, 730, GROUND_KEY1).setScale(2.1).refreshBody()
+		platforms.create(1760, 170, GROUND_KEY).setScale(0.5).refreshBody()
+		platforms.create(1698, 220, GROUND_KEY).setScale(0.5).refreshBody()
+		platforms.create(1860, 120, GROUND_KEY).setScale(0.5).refreshBody()
+		platforms.create(1780, 180, GROUND_KEY1).setScale(0.3).refreshBody()
+		platforms.create(1670, 240, GROUND_KEY1).setScale(0.3).refreshBody()
+		platforms.create(1610, 280, GROUND_KEY1).setScale(0.3).refreshBody()
 
         return platforms
 	}
+
+	createWhell()
+	{
+		const whell = this.physics.add.staticGroup()
+
+		// deck mellan försa och andra huset
+		whell.create(400, 750, WHEEL1).setScale(0.5).refreshBody()
+		whell.create(200, 670, WHEEL1).setScale(0.5).refreshBody()
+		whell.create(200, 370, WHEEL1).setScale(0.5).refreshBody()
+		whell.create(200, 200, WHEEL1).setScale(0.5).refreshBody()
+		whell.create(480, 390, WHEEL).setScale(0.6).refreshBody()
+		whell.create(400, 610, WHEEL1).setScale(0.5).refreshBody()
+		whell.create(290, 850, WHEEL).setScale(0.5).refreshBody()
+
+		// andra tredje huset
+		whell.create(1430, 830, WHEEL).setScale(0.5).refreshBody()
+		whell.create(1510, 630, WHEEL1).setScale(0.5).refreshBody()
+		whell.create(1510, 460, WHEEL1).setScale(0.5).refreshBody()
+
+		return whell
+	}
+
+
     createPlayer()
 	{
 		// skapar gubben
@@ -170,8 +229,8 @@ export default class GameScene extends Phaser.Scene
 	{
 		const stars = this.physics.add.group({
 			key: STAR_KEY,
-			repeat: 11,
-			setXY: { x: 12, y: 0, stepX: 70 }
+			repeat: 14,
+			setXY: { x: 30, y: 0, stepX: 130 }
 		})
 		
 		stars.children.iterate((child) => {
