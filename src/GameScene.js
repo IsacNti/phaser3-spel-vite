@@ -38,6 +38,7 @@ export default class GameScene extends Phaser.Scene
 	preload()
 	{
 		// skapar bilderna till ett mine så de går använda senare
+		
 		this.load.image(WHEEL,'/images/wheels.png')
 		this.load.image(WHEEL1,'/images/wheel1.png')
 		this.load.image('sky', '/images/sky.png')
@@ -47,7 +48,6 @@ export default class GameScene extends Phaser.Scene
         this.load.image(BOMB_KEY, '/images/bomb.png')
 		this.load.image('road','/images/road.png')
 		this.load.image('moon','/images/Moon.png')
-		this.load.image('label','/images/vitback.png')
 		this.load.image('hus','/images/houses3.png')
 
 		this.load.spritesheet(DUDE_KEY,  
@@ -64,7 +64,6 @@ export default class GameScene extends Phaser.Scene
 		this.add.image(960, 540, 'sky')
 		this.add.image(960,580,'hus').setScale(1)
 		const whell = this.createWhell()
-		this.add.image(90,28,'label').setScale(2)
 		this.add.image(960,512,'road')
 		this.add.image(1500,100,'moon')
 		this.player = this.createPlayer()
