@@ -38,20 +38,20 @@ export default class GameScene extends Phaser.Scene
 	preload()
 	{
 		// skapar bilderna till ett mine så de går använda senare
-		this.load.image(WHEEL,'src/assets/wheels.png')
-		this.load.image(WHEEL1,'src/assets/wheel1.png')
-		this.load.image('sky', '/sky.png')
-		this.load.image(GROUND_KEY, 'src/assets/platform.png')
-		this.load.image(GROUND_KEY1,'src/assets/upp-ner.png')
-        this.load.image(STAR_KEY, 'src/assets/star.png')
-        this.load.image(BOMB_KEY, 'src/assets/bomb.png')
-		this.load.image('road','src/assets/road.png')
-		this.load.image('moon','src/assets/Moon.png')
-		this.load.image('label','src/assets/vitback.png')
-		this.load.image('hus','src/assets/houses3.png')
+		this.load.image(WHEEL,'/images/wheels.png')
+		this.load.image(WHEEL1,'/images/wheel1.png')
+		this.load.image('sky', '/images/sky.png')
+		this.load.image(GROUND_KEY, '/images/platform.png')
+		this.load.image(GROUND_KEY1,'/images/upp-ner.png')
+        this.load.image(STAR_KEY, '/images/star.png')
+        this.load.image(BOMB_KEY, '/images/bomb.png')
+		this.load.image('road','/images/road.png')
+		this.load.image('moon','/images/Moon.png')
+		this.load.image('label','/images/vitback.png')
+		this.load.image('hus','/images/houses3.png')
 
 		this.load.spritesheet(DUDE_KEY,  
-			'src/assets/dude.png',
+			'/images/dude.png',
 			{ frameWidth: 32, frameHeight: 48 }
 		)
 	}
