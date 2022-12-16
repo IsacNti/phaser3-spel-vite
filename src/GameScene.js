@@ -40,7 +40,7 @@ export default class GameScene extends Phaser.Scene
 		// skapar bilderna till ett mine så de går använda senare
 		this.load.image(WHEEL,'src/assets/wheels.png')
 		this.load.image(WHEEL1,'src/assets/wheel1.png')
-		this.load.image('sky', 'assets/sky.png')
+		this.load.image('sky', '/assets/sky.png')
 		this.load.image(GROUND_KEY, 'src/assets/platform.png')
 		this.load.image(GROUND_KEY1,'src/assets/upp-ner.png')
         this.load.image(STAR_KEY, 'src/assets/star.png')
@@ -49,7 +49,7 @@ export default class GameScene extends Phaser.Scene
 		this.load.image('moon','src/assets/Moon.png')
 		this.load.image('label','src/assets/vitback.png')
 		this.load.image('hus','src/assets/houses3.png')
-s
+
 		this.load.spritesheet(DUDE_KEY,  
 			'src/assets/dude.png',
 			{ frameWidth: 32, frameHeight: 48 }
