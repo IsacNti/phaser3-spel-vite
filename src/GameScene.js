@@ -60,6 +60,7 @@ export default class GameScene extends Phaser.Scene
 	{
 		// skapar bilder så de kommer in i spelet
 		const platforms = this.createPlatforms()
+
 		this.add.image(960, 540, 'sky')
 		this.add.image(960,580,'hus').setScale(1)
 		const whell = this.createWhell()

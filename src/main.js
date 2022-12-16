@@ -1,6 +1,5 @@
 import Phaser from 'phaser'
 
-import HelloWorldScene from './HelloWorldScene'
 import GameScene from './GameScene'
 
 const config = {
@@ -13,7 +12,7 @@ const config = {
 			gravity: { y: 300 }
 		}
 	},
-	scene: [GameScene, HelloWorldScene]
+	scene: [GameScene]
 }
 
 export default new Phaser.Game(config)
