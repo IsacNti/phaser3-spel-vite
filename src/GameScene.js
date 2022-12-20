@@ -260,7 +260,7 @@ export default class GameScene extends Phaser.Scene
 	}
     createScoreLabel(x, y, score)
 	{
-		const style = { fontSize: '32px', fill: '#000' }
+		const style = { fontSize: '32px', fill: '#fff' }
 		const label = new ScoreLabel(this, x, y, score, style)
 
 		this.add.existing(label)
