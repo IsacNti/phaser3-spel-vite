@@ -4,7 +4,7 @@ Isac Lindholm 2022-03-17
 
 ## Uppgifft
 
-Skappa en sida som kör javascript spel med spelmotern phaser-3
+Skappa en sida som kör javascript spel med spelmotern phaser-3 för att lära oss mer om javascript
 
 ## Bakgrund
 
