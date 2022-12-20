@@ -13,13 +13,7 @@ const BOMB_KEY = 'bomb'
 const WHEEL = 'wheel'
 const WHEEL1 = 'wheelsido'
 
-/*
-kom ihåg css för html
-    display: grid;
-    place-content: center;
-    height: 100vh;
-    background-color: #333; 
-*/
+
 export default class GameScene extends Phaser.Scene
 {
 	constructor()
